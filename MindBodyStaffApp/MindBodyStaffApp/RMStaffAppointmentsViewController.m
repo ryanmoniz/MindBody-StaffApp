@@ -10,6 +10,7 @@
 #import "RMMBOManager.h"
 #import "SVProgressHUD.h"
 #import "RMAppointmentService.h"
+#import "RMStaffAppointmentObject.h"
 
 @interface RMStaffAppointmentsViewController ()
 
@@ -28,6 +29,8 @@
    [super viewDidAppear:animated];
 
    self.staffApptsArray = [[NSMutableArray alloc] init];
+
+   self.title = [NSString stringWithFormat:@"%@ %@",self.staffFirstNameString, self.staffLastNameString];
 
    RMAppointmentService *getStaffApptRequest = [[RMAppointmentService alloc] init];
 
@@ -63,8 +66,15 @@
       //displaying the appointment date, start and end time, client name, and type of appointment (session).
       
       for (NSDictionary *dict in arg) {
-         [dict valueForKey:@"StartDateTime"];
-         //[staffApptsArray addObject:];
+         RMStaffAppointmentObject *appt = [[RMStaffAppointmentObject alloc] init];
+         NSArray *dateArray = [[dict valueForKey:@"StartDateTime"] componentsSeparatedByString:@"T"];
+         appt.apptDate = [dateArray objectAtIndex:0];
+         appt.startTime = [dateArray objectAtIndex:1];
+         dateArray = [[dict valueForKey:@"EndDateTime"] componentsSeparatedByString:@"T"];
+         appt.endTime = [dateArray objectAtIndex:1];
+         appt.clientName = [NSString stringWithFormat:@"%@ %@",[[dict valueForKey:@"Client"] valueForKey:@"FirstName"],[[dict valueForKey:@"Client"] valueForKey:@"LastName"]];
+         appt.sessionType = [[dict valueForKey:@"SessionType"] valueForKey:@"Name"];
+         [self.staffApptsArray addObject:appt];
       }
       [self.tableView reloadData];
    }
@@ -93,15 +103,31 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   static NSString *simpleTableIdentifier = @"Cell";
+   static NSString *CellIdentifier = @"ApptDetails";
+   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
-   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-
+   // Configure the cell...
    if (cell == nil) {
-      cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
+      cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
    }
 
+   UILabel *apptDateLabel = (UILabel *)[cell viewWithTag:5];
+   apptDateLabel.text = [[self.staffApptsArray objectAtIndex:indexPath.row] apptDate];
+
+   UILabel *startTimeLabel = (UILabel *)[cell viewWithTag:1];
+   startTimeLabel.text = [[self.staffApptsArray objectAtIndex:indexPath.row] startTime];
+
+   UILabel *endTimeLabel = (UILabel *)[cell viewWithTag:2];
+   endTimeLabel.text = [[self.staffApptsArray objectAtIndex:indexPath.row] endTime];
+
+   UILabel *clientNameLabel = (UILabel *)[cell viewWithTag:3];
+   clientNameLabel.text = [[self.staffApptsArray objectAtIndex:indexPath.row] clientName];
+
+   UILabel *sessionLabel = (UILabel *)[cell viewWithTag:4];
+   sessionLabel.text = [[self.staffApptsArray objectAtIndex:indexPath.row] sessionType];
+
    cell.textLabel.text = @"";
+
    return cell;
 }
 
