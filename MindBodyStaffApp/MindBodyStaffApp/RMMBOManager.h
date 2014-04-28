@@ -15,5 +15,6 @@
 @property(nonatomic, strong)NSString *sourceNameString;
 @property(nonatomic, strong)NSString *sourcePasswordString;
 @property(nonatomic, strong)NSString *xmlnsURLString;
+@property(nonatomic, strong)NSString *siteIDString;
 
 @end
