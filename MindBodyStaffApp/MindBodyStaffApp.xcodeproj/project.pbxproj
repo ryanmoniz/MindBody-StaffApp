@@ -24,6 +24,8 @@
 		32220112190E144B0033C5B8 /* RMMBOManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 32220111190E144B0033C5B8 /* RMMBOManager.m */; };
 		32220116190E145B0033C5B8 /* RMStaffService.m in Sources */ = {isa = PBXBuildFile; fileRef = 32220115190E145B0033C5B8 /* RMStaffService.m */; };
 		32220119190E176E0033C5B8 /* RMStaffAppointmentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32220118190E176E0033C5B8 /* RMStaffAppointmentsViewController.m */; };
+		3222011C190E1DE00033C5B8 /* RMAppointmentService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3222011B190E1DE00033C5B8 /* RMAppointmentService.m */; };
+		3222011F190E1E030033C5B8 /* RMBaseService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3222011E190E1E030033C5B8 /* RMBaseService.m */; };
 		F9EC33AA953C496A8C7F0D37 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24339C4A3DDD44A1A993F9AC /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +66,10 @@
 		32220115190E145B0033C5B8 /* RMStaffService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMStaffService.m; sourceTree = "<group>"; };
 		32220117190E176E0033C5B8 /* RMStaffAppointmentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMStaffAppointmentsViewController.h; sourceTree = "<group>"; };
 		32220118190E176E0033C5B8 /* RMStaffAppointmentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMStaffAppointmentsViewController.m; sourceTree = "<group>"; };
+		3222011A190E1DE00033C5B8 /* RMAppointmentService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMAppointmentService.h; sourceTree = "<group>"; };
+		3222011B190E1DE00033C5B8 /* RMAppointmentService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMAppointmentService.m; sourceTree = "<group>"; };
+		3222011D190E1E030033C5B8 /* RMBaseService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMBaseService.h; sourceTree = "<group>"; };
+		3222011E190E1E030033C5B8 /* RMBaseService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMBaseService.m; sourceTree = "<group>"; };
 		432F52EB24C5489387AF265D /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -175,8 +181,12 @@
 			children = (
 				32220110190E144B0033C5B8 /* RMMBOManager.h */,
 				32220111190E144B0033C5B8 /* RMMBOManager.m */,
+				3222011D190E1E030033C5B8 /* RMBaseService.h */,
+				3222011E190E1E030033C5B8 /* RMBaseService.m */,
 				32220114190E145B0033C5B8 /* RMStaffService.h */,
 				32220115190E145B0033C5B8 /* RMStaffService.m */,
+				3222011A190E1DE00033C5B8 /* RMAppointmentService.h */,
+				3222011B190E1DE00033C5B8 /* RMAppointmentService.m */,
 			);
 			name = MindBodyAPI;
 			sourceTree = "<group>";
@@ -315,9 +325,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				32220119190E176E0033C5B8 /* RMStaffAppointmentsViewController.m in Sources */,
+				3222011C190E1DE00033C5B8 /* RMAppointmentService.m in Sources */,
 				32220116190E145B0033C5B8 /* RMStaffService.m in Sources */,
 				322200E8190E12EA0033C5B8 /* main.m in Sources */,
 				32220112190E144B0033C5B8 /* RMMBOManager.m in Sources */,
+				3222011F190E1E030033C5B8 /* RMBaseService.m in Sources */,
 				322200EC190E12EA0033C5B8 /* RMAppDelegate.m in Sources */,
 				322200F2190E12EA0033C5B8 /* RMViewController.m in Sources */,
 			);
