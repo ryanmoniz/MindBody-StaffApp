@@ -21,7 +21,7 @@ const int RMIndexFirstCharacterNameInteger = 1;
 
 - (id)init {
    if (self = [super init]) {
-      self.wsdlMethodURL = @"https://api.mindbodyonline.com/0_5/AppointmentService.asmx.asmx";
+      self.wsdlMethodURL = @"https://api.mindbodyonline.com/0_5/AppointmentService.asmx";
       return self;
    }
    return nil;
@@ -33,7 +33,7 @@ const int RMIndexFirstCharacterNameInteger = 1;
 
    if (([firstNameString length] > 0) && ([lastNameString length] > 0) && ([staffIDString length] > 0)) {
       NSString *staffUserNameString = [NSString stringWithFormat:@"%@.%@",firstNameString,lastNameString];
-      NSString *staffPasswordString = [NSString stringWithFormat:@"%@%@%@",[firstNameString substringToIndex:RMIndexFirstCharacterNameInteger],[lastNameString substringToIndex:RMIndexFirstCharacterNameInteger],staffIDString];
+      NSString *staffPasswordString = [NSString stringWithFormat:@"%@%@%@",[[firstNameString substringToIndex:RMIndexFirstCharacterNameInteger] lowercaseString],[[lastNameString substringToIndex:RMIndexFirstCharacterNameInteger] lowercaseString],staffIDString];
 
       //assume if startDate/endDate is nil, use today.
       if (([startDateString length] == 0) && ([endDateString length] == 0)) {
@@ -96,22 +96,27 @@ const int RMIndexFirstCharacterNameInteger = 1;
       NSLog(@"responseObject = %@",responseObject);
 
       NSDictionary *staffResponseDict = [responseObject valueForKey:@"soap:Body"];
-      NSDictionary *getStaffResponseDict = [staffResponseDict valueForKey:@"GetStaffResponse"];
-      NSDictionary *getStaffResultDict = [getStaffResponseDict valueForKey:@"GetStaffResult"];
-      NSDictionary *staffMembersDict = [getStaffResultDict valueForKey:@"StaffMembers"];
-      NSArray *staffArray = [staffMembersDict valueForKey:@"Staff"];
+      NSDictionary *getStaffApptResponsetDict = [staffResponseDict valueForKey:@"GetStaffAppointmentsResponse"];
+      NSDictionary *getStaffApptResults = [getStaffApptResponsetDict valueForKey:@"GetStaffAppointmentsResult"];
+      NSDictionary *appointmentsDict = [getStaffApptResults valueForKey:@"Appointments"];
+      
+      NSArray *apptArray = [appointmentsDict valueForKey:@"Appointment"];
 
       if ((self.delegate != nil) && ([self.delegate respondsToSelector:self.selector])) {
          dispatch_async(dispatch_get_main_queue(), ^{
             [self dispatchSelector:self.selector
                             target:self.delegate
-                           objects:[NSArray arrayWithObjects:staffArray, nil]
+                           objects:[NSArray arrayWithObjects:apptArray, nil]
                       onMainThread:YES];
          });
       }
    }
                                     failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                        NSLog(@"failed");
+                                       [self dispatchSelector:self.selector
+                                                       target:self.delegate
+                                                      objects:[NSArray arrayWithObjects:error,nil]
+                                                 onMainThread:YES];
                                     }];
    [operation start];
 }
