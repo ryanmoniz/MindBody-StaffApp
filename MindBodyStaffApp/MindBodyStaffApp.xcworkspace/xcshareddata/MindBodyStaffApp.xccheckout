@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>04C4C183-97BC-4D33-B9DA-8C85AE813CE1</string>
+	<key>IDESourceControlProjectName</key>
+	<string>MindBodyStaffApp</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>70E8FE17-8A57-43AF-B5F0-067D3707D642</key>
+		<string>https://github.com/ryanmoniz/MindBody-StaffApp.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>MindBodyStaffApp/MindBodyStaffApp.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>70E8FE17-8A57-43AF-B5F0-067D3707D642</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/ryanmoniz/MindBody-StaffApp.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>70E8FE17-8A57-43AF-B5F0-067D3707D642</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>70E8FE17-8A57-43AF-B5F0-067D3707D642</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MindBody-StaffApp</string>
+		</dict>
+	</array>
+</dict>
+</plist>

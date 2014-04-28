@@ -1,0 +1,1 @@
+../../AFXMLDictionarySerializer/Classes/AFXMLDictionaryResponseSerializer.h
