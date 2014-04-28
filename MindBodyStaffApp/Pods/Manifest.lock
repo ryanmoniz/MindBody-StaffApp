@@ -21,15 +21,18 @@ PODS:
   - AFXMLDictionarySerializer (0.0.1):
     - AFNetworking (>= 2.0)
     - XMLDictionary
+  - SVProgressHUD (1.0)
   - XMLDictionary (1.4)
 
 DEPENDENCIES:
   - AFNetworking
   - AFXMLDictionarySerializer
+  - SVProgressHUD
 
 SPEC CHECKSUMS:
   AFNetworking: ae513199cca79e9d7af2708ccabe2ed075550c42
   AFXMLDictionarySerializer: fd557c158cae03a887d47f3ee7ad37c0c816df53
+  SVProgressHUD: 5e10939a296debf5fe5a5895eda9539b8b2114f1
   XMLDictionary: a6ede1b0f7e8acd0ee3495e93350a311be2bfd1e
 
 COCOAPODS: 0.32.1
