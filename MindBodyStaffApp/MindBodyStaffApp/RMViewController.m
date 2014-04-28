@@ -11,6 +11,8 @@
 #import "RMStaffService.h"
 #import "SVProgressHUD.h"
 
+#import "RMStaffAppointmentsViewController.h"
+
 @interface RMViewController ()
 
 @end
@@ -34,28 +36,30 @@
 - (void)viewDidAppear:(BOOL)animated {
    [super viewDidAppear:animated];
 
-   [RMMBOManager sharedInstance].sourceNameString = @"MBO.Ryan.Moniz";
-   [RMMBOManager sharedInstance].sourcePasswordString = @"d0gBou6OdzOXpLIYQG8x0OvBfgU=";
-   [RMMBOManager sharedInstance].xmlnsURLString = @"http://clients.mindbodyonline.com/api/0_5";
+   if ([self.finalStaffArray count] == 0) {
+      [RMMBOManager sharedInstance].sourceNameString = @"MBO.Ryan.Moniz";
+      [RMMBOManager sharedInstance].sourcePasswordString = @"d0gBou6OdzOXpLIYQG8x0OvBfgU=";
+      [RMMBOManager sharedInstance].xmlnsURLString = @"http://clients.mindbodyonline.com/api/0_5";
 
-   RMStaffService *getStaffRequest = [[RMStaffService alloc] init];
+      RMStaffService *getStaffRequest = [[RMStaffService alloc] init];
 
-   if (nil != getStaffRequest) {
-      getStaffRequest.delegate = self;
-      getStaffRequest.selector = @selector(getStaffResponse:);
-      getStaffRequest.xmlDetail = @"Full"; //enum
-      getStaffRequest.siteIDString = @"-31100";
+      if (nil != getStaffRequest) {
+         getStaffRequest.delegate = self;
+         getStaffRequest.selector = @selector(getStaffResponse:);
+         getStaffRequest.xmlDetail = @"Full"; //enum
+         getStaffRequest.siteIDString = @"-31100";
 
-      //display hud
-      [SVProgressHUD show];
+         //display hud
+         [SVProgressHUD show];
 
-      [getStaffRequest getStaff];
-   }
-   else {
-      NSLog(@"getStaffRequest was nil");
-      dispatch_async(dispatch_get_main_queue(), ^{
-         [SVProgressHUD dismiss];
-      });
+         [getStaffRequest getStaff];
+      }
+      else {
+         NSLog(@"getStaffRequest was nil");
+         dispatch_async(dispatch_get_main_queue(), ^{
+            [SVProgressHUD dismiss];
+         });
+      }
    }
 }
 
@@ -91,7 +95,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   static NSString *simpleTableIdentifier = @"Cell";
+   static NSString *simpleTableIdentifier = @"StaffCell";
 
    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
 
@@ -100,7 +104,22 @@
    }
 
    cell.textLabel.text = [[self.finalStaffArray objectAtIndex:indexPath.row] valueForKey:@"Name"];
+   cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
    return cell;
+}
+
+#pragma mark - UITableView Delegate Methods
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+   [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+   if ([segue.identifier isEqualToString:@"ShowStaffAppointment"]) {
+      NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+      RMStaffAppointmentsViewController *destViewController = segue.destinationViewController;
+      //destViewController.recipeName = [recipes objectAtIndex:indexPath.row];
+   }
 }
 
 @end

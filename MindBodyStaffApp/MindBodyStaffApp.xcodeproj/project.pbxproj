@@ -23,6 +23,7 @@
 		32220107190E12EA0033C5B8 /* MindBodyStaffAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32220106190E12EA0033C5B8 /* MindBodyStaffAppTests.m */; };
 		32220112190E144B0033C5B8 /* RMMBOManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 32220111190E144B0033C5B8 /* RMMBOManager.m */; };
 		32220116190E145B0033C5B8 /* RMStaffService.m in Sources */ = {isa = PBXBuildFile; fileRef = 32220115190E145B0033C5B8 /* RMStaffService.m */; };
+		32220119190E176E0033C5B8 /* RMStaffAppointmentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32220118190E176E0033C5B8 /* RMStaffAppointmentsViewController.m */; };
 		F9EC33AA953C496A8C7F0D37 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24339C4A3DDD44A1A993F9AC /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +62,8 @@
 		32220111190E144B0033C5B8 /* RMMBOManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMMBOManager.m; sourceTree = "<group>"; };
 		32220114190E145B0033C5B8 /* RMStaffService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMStaffService.h; sourceTree = "<group>"; };
 		32220115190E145B0033C5B8 /* RMStaffService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMStaffService.m; sourceTree = "<group>"; };
+		32220117190E176E0033C5B8 /* RMStaffAppointmentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMStaffAppointmentsViewController.h; sourceTree = "<group>"; };
+		32220118190E176E0033C5B8 /* RMStaffAppointmentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMStaffAppointmentsViewController.m; sourceTree = "<group>"; };
 		432F52EB24C5489387AF265D /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -127,9 +130,11 @@
 				32220113190E14500033C5B8 /* MindBodyAPI */,
 				322200EA190E12EA0033C5B8 /* RMAppDelegate.h */,
 				322200EB190E12EA0033C5B8 /* RMAppDelegate.m */,
-				322200ED190E12EA0033C5B8 /* Main.storyboard */,
 				322200F0190E12EA0033C5B8 /* RMViewController.h */,
 				322200F1190E12EA0033C5B8 /* RMViewController.m */,
+				32220117190E176E0033C5B8 /* RMStaffAppointmentsViewController.h */,
+				32220118190E176E0033C5B8 /* RMStaffAppointmentsViewController.m */,
+				322200ED190E12EA0033C5B8 /* Main.storyboard */,
 				322200F3190E12EA0033C5B8 /* Images.xcassets */,
 				322200E2190E12EA0033C5B8 /* Supporting Files */,
 			);
@@ -309,6 +314,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32220119190E176E0033C5B8 /* RMStaffAppointmentsViewController.m in Sources */,
 				32220116190E145B0033C5B8 /* RMStaffService.m in Sources */,
 				322200E8190E12EA0033C5B8 /* main.m in Sources */,
 				32220112190E144B0033C5B8 /* RMMBOManager.m in Sources */,

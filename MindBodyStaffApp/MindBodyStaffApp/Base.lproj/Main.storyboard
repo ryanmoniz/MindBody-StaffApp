@@ -20,6 +20,19 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StaffCell" id="6Yc-uH-RId">
+                                        <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Yc-uH-RId">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="atm-o2-ErK" kind="push" identifier="ShowStaffAppointment" id="a0r-Qa-wr9"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="vXZ-lx-hvc" id="ymU-T3-cTu"/>
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="qQn-PB-jjs"/>
@@ -42,6 +55,46 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="913" y="89"/>
+        </scene>
+        <!--Staff Appointments View Controller-->
+        <scene sceneID="9Pz-aB-Dgw">
+            <objects>
+                <viewController id="atm-o2-ErK" customClass="RMStaffAppointmentsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="97l-lS-NbS"/>
+                        <viewControllerLayoutGuide type="bottom" id="86h-z1-wDz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="d7k-MX-8cy">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="zMn-us-CEJ">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="atm-o2-ErK" id="0sr-Cb-dpL"/>
+                                    <outlet property="delegate" destination="atm-o2-ErK" id="Yu0-2l-rV4"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="zMn-us-CEJ" secondAttribute="bottom" id="1V5-lt-BzD"/>
+                            <constraint firstItem="zMn-us-CEJ" firstAttribute="leading" secondItem="d7k-MX-8cy" secondAttribute="leading" id="LHg-47-FEE"/>
+                            <constraint firstAttribute="trailing" secondItem="zMn-us-CEJ" secondAttribute="trailing" id="c0h-Ei-txs"/>
+                            <constraint firstItem="zMn-us-CEJ" firstAttribute="top" secondItem="d7k-MX-8cy" secondAttribute="top" id="vjg-jC-tpO"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="T2V-Fw-8j1"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="tableView" destination="zMn-us-CEJ" id="4V5-j8-Uvc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oVU-6m-xBm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1398" y="89"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9vl-vf-v97">
