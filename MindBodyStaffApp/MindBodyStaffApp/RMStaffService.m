@@ -50,7 +50,7 @@
    NSLog(@"Request XML*****************\n%@\n*********************", soapMessage);
 
 
-   [self sendRequestForSOAPMethod:soapActionString withSOAPMessage:soapActionString];
+   [self sendRequestForSOAPMethod:soapActionString withSOAPMessage:soapMessage];
    
 }
 
@@ -88,7 +88,11 @@
       }
    }
                                     failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                       NSLog(@"failed");
+                                       NSLog(@"failed = %@",[error description]);
+                                       [self dispatchSelector:self.selector
+                                                       target:self.delegate
+                                                      objects:[NSArray arrayWithObjects:error,nil]
+                                                 onMainThread:YES];
                                     }];
    [operation start];
 }
