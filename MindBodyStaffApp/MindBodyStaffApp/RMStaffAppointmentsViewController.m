@@ -7,6 +7,9 @@
 //
 
 #import "RMStaffAppointmentsViewController.h"
+#import "RMMBOManager.h"
+#import "SVProgressHUD.h"
+#import "RMAppointmentService.h"
 
 @interface RMStaffAppointmentsViewController ()
 
@@ -19,9 +22,55 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-   [self.view setBackgroundColor:[UIColor whiteColor]];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+   [super viewDidAppear:animated];
 
    self.staffApptsArray = [[NSArray alloc] init];
+
+   RMAppointmentService *getStaffApptRequest = [[RMAppointmentService alloc] init];
+
+   if (nil != getStaffApptRequest) {
+      getStaffApptRequest.delegate = self;
+      getStaffApptRequest.selector = @selector(getStaffApptResponse:);
+      getStaffApptRequest.xmlDetail = @"Full"; //enum
+      getStaffApptRequest.siteIDString = [RMMBOManager sharedInstance].siteIDString;
+
+      //display hud
+      [SVProgressHUD show];
+
+      [getStaffApptRequest getAppointmentForStaffWithFirstName:self.staffFirstNameString
+                                                      lastName:self.staffLastNameString
+                                                       staffID:self.staffIDString
+                                                 withStartDate:self.startDateString
+                                                     toEndDate:self.endDateString];
+   }
+   else {
+      NSLog(@"getStaffApptRequest was nil");
+      dispatch_async(dispatch_get_main_queue(), ^{
+         [SVProgressHUD dismiss];
+      });
+   }
+}
+
+- (void)getStaffApptResponse:(id)arg {
+   dispatch_async(dispatch_get_main_queue(), ^{
+      [SVProgressHUD dismiss];
+   });
+
+   if ([arg isKindOfClass:[NSArray class]]) {
+      //displaying the appointment date, start and end time, client name, and type of appointment (session).
+      
+   }
+   else if ([arg isKindOfClass:[NSError class]]) {
+      NSLog(@"Error=%@",[arg description]);
+      UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                      message:@"An Error has occurred, check logs and please try again." delegate:self
+                                            cancelButtonTitle:@"OK"
+                                            otherButtonTitles:nil, nil];
+      [error show];
+   }
 }
 
 - (void)didReceiveMemoryWarning
