@@ -12,7 +12,7 @@
 #import "AFXMLDictionaryResponseSerializer.h"
 
 @interface RMStaffService ()
-
+- (void)sendRequestForSOAPMethod:(NSString *)soapActionString withSOAPMessage:(NSString *)soapMessage;
 @end
 
 @implementation RMStaffService
@@ -50,6 +50,11 @@
    NSLog(@"Request XML*****************\n%@\n*********************", soapMessage);
 
 
+   [self sendRequestForSOAPMethod:soapActionString withSOAPMessage:soapActionString];
+   
+}
+
+- (void)sendRequestForSOAPMethod:(NSString *)soapActionString withSOAPMessage:(NSString *)soapMessage {
    NSURL *url = [NSURL URLWithString:self.wsdlMethodURL];
    NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
    NSString *msgLength = [NSString stringWithFormat:@"%lu", (unsigned long)[soapMessage length]];
@@ -86,7 +91,6 @@
                                        NSLog(@"failed");
                                     }];
    [operation start];
-   
 }
 
 @end

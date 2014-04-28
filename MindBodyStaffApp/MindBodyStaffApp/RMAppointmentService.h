@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "RMBaseService.h"
 
+extern const int RMIndexFirstCharacterNameInteger;
+
 @interface RMAppointmentService : RMBaseService
 
+@property(nonatomic, strong)NSString *siteIDString;
+
+- (void)getAppointmentForStaffWithFirstName:(NSString *)firstNameString lastName:(NSString *)lastNameString staffID:(NSString *)staffIDString withStartDate:(NSString *)startDateString toEndDate:(NSString *)endDateString;
 @end
