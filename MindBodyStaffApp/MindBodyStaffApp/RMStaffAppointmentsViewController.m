@@ -27,7 +27,7 @@
 - (void)viewDidAppear:(BOOL)animated {
    [super viewDidAppear:animated];
 
-   self.staffApptsArray = [[NSArray alloc] init];
+   self.staffApptsArray = [[NSMutableArray alloc] init];
 
    RMAppointmentService *getStaffApptRequest = [[RMAppointmentService alloc] init];
 
@@ -62,6 +62,11 @@
    if ([arg isKindOfClass:[NSArray class]]) {
       //displaying the appointment date, start and end time, client name, and type of appointment (session).
       
+      for (NSDictionary *dict in arg) {
+         [dict valueForKey:@"StartDateTime"];
+         //[staffApptsArray addObject:];
+      }
+      [self.tableView reloadData];
    }
    else if ([arg isKindOfClass:[NSError class]]) {
       NSLog(@"Error=%@",[arg description]);

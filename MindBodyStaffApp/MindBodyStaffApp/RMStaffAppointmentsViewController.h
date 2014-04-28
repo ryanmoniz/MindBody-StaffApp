@@ -11,7 +11,7 @@
 @interface RMStaffAppointmentsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property(nonatomic,weak)IBOutlet UITableView *tableView;
-@property(nonatomic,strong)NSArray *staffApptsArray;
+@property(nonatomic,strong)NSMutableArray *staffApptsArray;
 
 @property(nonatomic,strong)NSString *staffFirstNameString;
 @property(nonatomic,strong)NSString *staffLastNameString;
