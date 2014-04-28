@@ -40,6 +40,7 @@
       [RMMBOManager sharedInstance].sourceNameString = @"MBO.Ryan.Moniz";
       [RMMBOManager sharedInstance].sourcePasswordString = @"d0gBou6OdzOXpLIYQG8x0OvBfgU=";
       [RMMBOManager sharedInstance].xmlnsURLString = @"http://clients.mindbodyonline.com/api/0_5";
+      [RMMBOManager sharedInstance].siteIDString = @"-31100";
 
       RMStaffService *getStaffRequest = [[RMStaffService alloc] init];
 
@@ -47,7 +48,7 @@
          getStaffRequest.delegate = self;
          getStaffRequest.selector = @selector(getStaffResponse:);
          getStaffRequest.xmlDetail = @"Full"; //enum
-         getStaffRequest.siteIDString = @"-31100";
+         getStaffRequest.siteIDString = [RMMBOManager sharedInstance].siteIDString;
 
          //display hud
          [SVProgressHUD show];
@@ -83,6 +84,14 @@
       NSLog(@"finalStaffArray = %@",[self.finalStaffArray description]);
       [self.tableView reloadData];
    }
+   else if ([arg isKindOfClass:[NSError class]]) {
+      NSLog(@"Error=%@",[arg description]);
+      UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                      message:@"An Error has occurred, check logs and please try again." delegate:self
+                                            cancelButtonTitle:@"OK"
+                                            otherButtonTitles:nil, nil];
+      [error show];
+   }
 }
 
 
@@ -100,10 +109,11 @@
    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
 
    if (cell == nil) {
-      cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
+      cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:simpleTableIdentifier];
    }
 
    cell.textLabel.text = [[self.finalStaffArray objectAtIndex:indexPath.row] valueForKey:@"Name"];
+   cell.detailTextLabel.text = [[self.finalStaffArray objectAtIndex:indexPath.row] valueForKey:@"ID"];
    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
    return cell;
 }
@@ -118,7 +128,13 @@
    if ([segue.identifier isEqualToString:@"ShowStaffAppointment"]) {
       NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
       RMStaffAppointmentsViewController *destViewController = segue.destinationViewController;
-      //destViewController.recipeName = [recipes objectAtIndex:indexPath.row];
+
+      destViewController.staffFirstNameString = [[self.finalStaffArray objectAtIndex:indexPath.row] valueForKey:@"FirstName"];
+      destViewController.staffLastNameString = [[self.finalStaffArray objectAtIndex:indexPath.row] valueForKey:@"LastName"];
+      destViewController.staffIDString = [[self.finalStaffArray objectAtIndex:indexPath.row] valueForKey:@"ID"];
+      destViewController.siteIDString = [RMMBOManager sharedInstance].siteIDString;
+      destViewController.startDateString = @"2014-01-03";
+      destViewController.endDateString = @"2014-01-03";
    }
 }
 
