@@ -12,5 +12,12 @@
 
 @property(nonatomic,weak)IBOutlet UITableView *tableView;
 @property(nonatomic,strong)NSArray *staffApptsArray;
+@property(nonatomic,strong)NSString *staffFirstNameString;
+@property(nonatomic,strong)NSString *staffLastNameString;
+@property(nonatomic,strong)NSString *staffIDString;
+@property(nonatomic,strong)NSString *siteIDString;
+@property(nonatomic,strong)NSString *startDateString;
+@property(nonatomic,strong)NSString *endDateString;
+
 
 @end
