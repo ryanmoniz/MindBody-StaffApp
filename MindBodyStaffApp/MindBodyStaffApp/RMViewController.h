@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RMViewController : UIViewController
+@interface RMViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, strong)NSMutableArray *finalStaffArray;
 
 @end
