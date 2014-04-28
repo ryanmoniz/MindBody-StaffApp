@@ -68,11 +68,17 @@
    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
       NSLog(@"responseObject = %@",responseObject);
 
+      NSDictionary *staffResponseDict = [responseObject valueForKey:@"soap:Body"];
+      NSDictionary *getStaffResponseDict = [staffResponseDict valueForKey:@"GetStaffResponse"];
+      NSDictionary *getStaffResultDict = [getStaffResponseDict valueForKey:@"GetStaffResult"];
+      NSDictionary *staffMembersDict = [getStaffResultDict valueForKey:@"StaffMembers"];
+      NSArray *staffArray = [staffMembersDict valueForKey:@"Staff"];
+
       if ((self.delegate != nil) && ([self.delegate respondsToSelector:self.selector])) {
          dispatch_async(dispatch_get_main_queue(), ^{
             [self dispatchSelector:self.selector
                             target:self.delegate
-                           objects:[NSArray arrayWithObjects:responseObject, nil]
+                           objects:[NSArray arrayWithObjects:staffArray, nil]
                       onMainThread:YES];
          });
       }

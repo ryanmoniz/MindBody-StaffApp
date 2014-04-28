@@ -53,28 +53,24 @@
    }
    else {
       NSLog(@"getStaffRequest was nil");
+      dispatch_async(dispatch_get_main_queue(), ^{
+         [SVProgressHUD dismiss];
+      });
    }
 }
 
 - (void)getStaffResponse:(id)arg {
-
    dispatch_async(dispatch_get_main_queue(), ^{
       [SVProgressHUD dismiss];
    });
 
-   if ([arg isKindOfClass:[NSDictionary class]]) {
+   if ([arg isKindOfClass:[NSArray class]]) {
       //filter on ID>0
-      NSDictionary *staffResponseDict = [arg valueForKey:@"soap:Body"];
-      NSDictionary *getStaffResponseDict = [staffResponseDict valueForKey:@"GetStaffResponse"];
-      NSDictionary *getStaffResultDict = [getStaffResponseDict valueForKey:@"GetStaffResult"];
-      NSDictionary *staffMembersDict = [getStaffResultDict valueForKey:@"StaffMembers"];
-      NSArray *staffArray = [staffMembersDict valueForKey:@"Staff"];
-
       if([self.finalStaffArray count] > 0) {
          [self.finalStaffArray removeAllObjects];
       }
 
-      for (NSDictionary *staff in staffArray) {
+      for (NSDictionary *staff in arg) {
          if ([[staff valueForKey:@"ID"] intValue] > 0) {
             [self.finalStaffArray addObject:staff];
          }
